@@ -6,7 +6,7 @@
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 17:22:04 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/20 15:51:51 by jroguszk         ###   ########.fr       */
+/*   Updated: 2017/11/21 13:48:54 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_strchr(const char *s, int c);
-char	*strnstr(const char *haystack, const char *needle, size_t len);
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 void	ft_putendl(char const *s);
 void	ft_putnbr(int n);
 void	ft_putchar_fd(char c, int fd);
@@ -40,7 +40,7 @@ void	ft_putnbr_fd(int n, int fd);
 void	*ft_memalloc(size_t size);
 void	ft_bzero(void *s, size_t n);
 void	ft_memdel(void **ap);
-char	*strrchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
 void	*ft_memset(void *b, int c, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n);

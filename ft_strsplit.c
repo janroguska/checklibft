@@ -6,7 +6,7 @@
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 15:50:30 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/21 11:31:37 by jroguszk         ###   ########.fr       */
+/*   Updated: 2017/11/21 15:57:45 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ static	int		count_words(char const *s, char c)
 		while (s[j] != c && s[j] != '\0')
 			j++;
 	}
-	if (s[j] == '\0')
-		i++;
 	return (i);
 }
 
