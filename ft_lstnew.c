@@ -1,42 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 13:23:55 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/22 17:01:26 by jroguszk         ###   ########.fr       */
+/*   Created: 2017/11/22 17:59:53 by jroguszk          #+#    #+#             */
+/*   Updated: 2017/11/23 15:29:25 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	*c;
+	t_list		*tmp;
 
-	if (s == NULL)
+	tmp = (t_list*)malloc(sizeof(t_list));
+	if (tmp == NULL)
 		return (NULL);
-	i = ft_strlen(s);
-	j = 0;
-	while (s[i - 1] == '\n'
-				|| s[i - 1] == '\t' || s[i - 1] == ' ')
-		i--;
-	if (i <= 0)
-		return (ft_strdup(""));
-	while (s[j] == '\t'
-				|| s[j] == '\n' || s[j] == ' ')
-		j++;
-	k = (i - j);
-	if (i == ft_strlen(s) && j == 0)
-		c = ft_strdup(s);
-	else
-		c = ft_strsub(s, j, k);
-	if (c == NULL)
+	if (content == NULL)
+	{
+		tmp->content = NULL;
+		tmp->content_size = 0;
+		tmp->next = NULL;
+		return (tmp);
+	}
+	tmp->content = (t_list*)malloc(sizeof(content));
+	if (tmp->content == NULL)
 		return (NULL);
-	return (c);
+	ft_memcpy(tmp->content, content, content_size);
+	tmp->content_size = content_size;
+	tmp->next = NULL;
+	return (tmp);
 }

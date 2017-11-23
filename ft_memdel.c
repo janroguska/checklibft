@@ -6,7 +6,7 @@
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:09:14 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/20 17:40:25 by jroguszk         ###   ########.fr       */
+/*   Updated: 2017/11/23 11:57:16 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	ft_memdel(void **ap)
 {
+	size_t	i;
+
+	i = 0;
 	if (ap != NULL)
 	{
 		free(*ap);
-		bzero(ap, sizeof(*ap));
+		while (i < sizeof(*ap))
+		{
+			((char*)ap)[i] = 0;
+			i++;
+		}
 	}
 }

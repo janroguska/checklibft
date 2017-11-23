@@ -6,7 +6,7 @@
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/20 15:50:30 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/21 15:57:45 by jroguszk         ###   ########.fr       */
+/*   Updated: 2017/11/22 17:41:18 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,53 +19,58 @@ static	int		count_words(char const *s, char c)
 
 	i = 0;
 	j = 0;
+	if (s[j] != c && s[j] != '\0')
+		i++;
 	while (s[j])
 	{
-		i++;
-		while (s[j] == c && s[j] != '\0')
-			j++;
-		while (s[j] != c && s[j] != '\0')
-			j++;
+		if (s[j] != c && s[j - 1] == c)
+			i++;
+		j++;
 	}
 	return (i);
 }
 
-static	char	*make_words(char const *s, char c, char **a)
+static	char	*make_word(char const *s, char c, int *k)
 {
 	int		i;
-	int		j;
-	int		k;
-	int		l;
+	char	*a;
 
+	if ((a = (char*)malloc(sizeof(a) * (ft_strlen(s)))) == NULL)
+		return (NULL);
 	i = 0;
-	j = 0;
-	k = 0;
-	l = 0;
-	while (s[j])
+	while (s[*k] != c && s[*k])
 	{
-		while (s[j] == c && s[j] != '\0')
-			j++;
-		k = j;
-		while (s[j] != c && s[j] != '\0')
-			j++;
-		l = j - k;
-		a[i] = ft_strsub(s, k, l);
+		a[i] = s[*k];
 		i++;
+		*k += 1;
 	}
-	return (*a);
+	a[i] = '\0';
+	while (s[*k] == c && s[*k] != '\0')
+		*k += 1;
+	return (a);
 }
 
 char			**ft_strsplit(char const *s, char c)
 {
 	int		i;
+	int		j;
+	int		k;
 	char	**a;
 
 	if (s == NULL)
 		return (NULL);
 	i = count_words(s, c);
-	a = (char**)malloc(sizeof(a) * (i + 1));
-	if (a == NULL)
+	j = 0;
+	k = 0;
+	if ((a = (char**)malloc(sizeof(a) * (i + 2))) == NULL)
 		return (NULL);
-	make_words(s, c, a);
+	while (s[k] == c && s[k])
+		k++;
+	while (j < i && s[k])
+	{
+		a[j] = make_word(s, c, &k);
+		j++;
+	}
+	a[j] = NULL;
 	return (a);
 }

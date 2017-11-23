@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jroguszk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 13:04:58 by jroguszk          #+#    #+#             */
-/*   Updated: 2017/11/22 09:57:24 by jroguszk         ###   ########.fr       */
+/*   Created: 2017/11/23 14:53:07 by jroguszk          #+#    #+#             */
+/*   Updated: 2017/11/23 16:37:24 by jroguszk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	unsigned char	*srccpy;
-	unsigned char	*dstcpy;
-
-	srccpy = (unsigned char*)src;
-	dstcpy = (unsigned char*)dst;
-	if (srccpy < dstcpy)
+	while (lst != NULL)
 	{
-		while (len--)
-			dstcpy[len] = srccpy[len];
+		f(lst);
+		lst = lst->next;
 	}
-	else
-		ft_memcpy(dstcpy, srccpy, len);
-	return (dstcpy);
 }
